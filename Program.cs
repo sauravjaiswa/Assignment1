@@ -1,12 +1,11 @@
-﻿using System;
-
-namespace Assignment1
+﻿namespace Assignment1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            InputProcessor processor = new (new Validation(), new ConsoleLogger());
+            processor.Process();
         }
     }
 }

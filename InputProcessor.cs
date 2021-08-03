@@ -10,10 +10,12 @@ namespace Assignment1
     public class InputProcessor
     {
         private readonly IValidation _validation;
+        private readonly ILogger _logger;
 
-        public InputProcessor(IValidation validation)
+        public InputProcessor(IValidation validation, ILogger logger)
         {
             _validation = validation;
+            _logger = logger;
         }
 
         public void Process()
@@ -31,7 +33,7 @@ namespace Assignment1
                     if (_validation.IsValidDate(idob))
                         break;
                     else
-                        Console.WriteLine("Invalid DOB!");
+                        _logger.LogError("Invalid DOB!");
 
                 } while (true);
 
@@ -39,47 +41,42 @@ namespace Assignment1
                 bool flag = false;
                 do
                 {
-                    try
-                    {
-                        Console.WriteLine("Enter choice:");
-                        Console.WriteLine("1 for sun sign");
-                        Console.WriteLine("2 for horoscope");
-                        Console.WriteLine("3 for end application");
-                        ch = Console.ReadLine();
+                    Console.WriteLine("Enter choice:");
+                    Console.WriteLine("1 for sun sign");
+                    Console.WriteLine("2 for horoscope");
+                    Console.WriteLine("3 for end application");
+                    ch = Console.ReadLine();
 
-                        if (_validation.IsValidChoice(ch))
-                            choice = int.Parse(ch);
-                        else
-                        {
-                            Console.WriteLine("Invalid choice!");
+                    if (_validation.IsValidChoice(ch))
+                    {
+                        choice = int.Parse(ch);
+                        flag = false;
+                    }
+                    else
+                    {
+                        _logger.LogError("Invalid choice!");
+                        flag = true;
+                        continue;
+                    }
+
+                    switch (choice)
+                    {
+                        case 1:
+                            controller = new MainController(new SunSign(_logger) { DOB = idob });
+                            break;
+                        case 2:
+                            controller = new MainController(new Horoscope(_logger) { DOB = idob });
+                            break;
+                        case 3:
+                            _logger.LogInfo("Ending application...");
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            _logger.LogError("Invalid choice!");
                             flag = true;
-                            continue;
-                        }
-
-                        switch (choice)
-                        {
-                            case 1:
-                                controller = new MainController(new SunSign() { DOB = idob });
-                                break;
-                            case 2:
-                                controller = new MainController(new Horoscope() { DOB = idob });
-                                break;
-                            case 3:
-                                Console.WriteLine("Ending application...");
-                                Environment.Exit(0);
-                                break;
-                            default:
-                                Console.WriteLine("Invalid choice!");
-                                flag = true;
-                                break;
-                        }
-                        controller.DisplayResult();
+                            break;
                     }
-                    catch(Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        break;
-                    }
+                    controller.DisplayResult();
                     
                 } while (flag);
 

@@ -7,29 +7,52 @@ namespace Assignment1
     {
         public string DOB { get; set; }
         private string sunSign, horoscope;
+        private string status = "OK";
+        private readonly ILogger _logger;
+        private readonly ApiProcessor _processor;
+
+        public Horoscope(ILogger logger)
+        {
+            _processor = new ApiProcessor();
+            _logger = logger;
+        }
 
         public void GetSunSign()
         {
-            sunSign = ApiProcessor.GetSunSign(DOB);
+            sunSign = _processor.GetSunSign(DOB);
         }
 
         public async Task GetHoroscope()
         {
-            Console.WriteLine("Horoscope called...");
-            horoscope = await ApiProcessor.GetHoroscope(sunSign);
+            try
+            {
+                Console.WriteLine("Horoscope called...");
+                horoscope = await _processor.GetHoroscope(sunSign);
+            }
+            catch(Exception e)
+            {
+                status = e.Message;
+            }
         }
 
         public void Display()
         {
             GetSunSign();
-            Console.WriteLine($"Sun Sign : {sunSign}");
+            _logger.LogInfo($"Sun Sign : {sunSign}");
             var t = Task.WhenAny(GetHoroscope());
             while (!t.IsCompleted)
             {
                 Console.Write(".");
                 Console.Write("\b");
             }
-            Console.WriteLine($"Horoscope : {horoscope}");
+            if (status != "OK")
+            {
+                _logger.LogError("Bad Request!");
+            }
+            else
+            {
+                _logger.LogInfo($"Horoscope : {horoscope}");
+            }   
         }
     }
 }

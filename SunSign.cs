@@ -6,16 +6,25 @@ namespace Assignment1
     {
         public string DOB { get; set; }
         private string sunSign;
+        private readonly ILogger _logger;
+        private readonly ApiProcessor _processor;
+
+        public SunSign(ILogger logger)
+        {
+            _processor = new ApiProcessor();
+            _logger = logger;
+        }
 
         public void GetSunSign()
         {
-            sunSign = ApiProcessor.GetSunSign(DOB);
+            sunSign = _processor.GetSunSign(DOB);
+
         }
 
         public void Display()
         {
             GetSunSign();
-            Console.WriteLine($"Sun Sign : {sunSign}");
+            _logger.LogInfo($"Sun Sign : {sunSign}");
         }
     }
 }

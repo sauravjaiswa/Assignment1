@@ -9,7 +9,14 @@ namespace Assignment1
     class SunSignRepository
     {
         private static readonly Dictionary<string, string> SunSignDictionary = new Dictionary<string, string>();
-        public static void MapDates()
+
+        static SunSignRepository()
+        {
+            //Console.WriteLine("Mapping dates...");
+            MapDates();
+        }
+
+        private static void MapDates()
         {
             DateTime date, start, end;
             string sign = "";
@@ -77,7 +84,7 @@ namespace Assignment1
             }
         }
 
-        public static string GetSunSign(string date)
+        public string GetSunSign(string date)
         {
             DateTime dateTemp = DateTime.Parse(date);
             date = dateTemp.ToShortDateString();

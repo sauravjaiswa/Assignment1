@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -8,11 +9,12 @@ namespace Assignment1
 {
     class ApiClientHelper
     {
-        public static HttpClient ApiClient { get; set; }
-        public const string RapidApiKey = "d38d73d424msh39e37145a05b762p1aa05fjsnae1b946853fa";
+        public static HttpClient ApiClient { get; private set; }
+        public static string RapidApiKey { get; private set; } = "d38d73d424msh39e37145a05b762p1aa05fjsnae1b946853fa";
 
         static ApiClientHelper()
         {
+            Console.WriteLine("Client connected");
             InitializeClient();
         }
 

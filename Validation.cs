@@ -7,16 +7,14 @@ namespace Assignment1
     {
         public bool IsValidDate(string dob)
         {
-            DateTime date;
-            bool result = DateTime.TryParseExact(dob, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date);
+            bool result = DateTime.TryParseExact(dob, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
 
             return result;
         }
 
         public bool IsValidChoice(string ch)
         {
-            int choice;
-            bool result = int.TryParse(ch, out choice);
+            bool result = int.TryParse(ch, out _);
 
             return result;
         }
