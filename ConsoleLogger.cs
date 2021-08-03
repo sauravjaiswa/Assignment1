@@ -8,14 +8,19 @@ namespace Assignment1
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         public void LogInfo(string message)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
+
+        public void LogPrint(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }

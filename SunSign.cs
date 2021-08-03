@@ -24,7 +24,8 @@ namespace Assignment1
         public void Display()
         {
             GetSunSign();
-            _logger.LogInfo($"Sun Sign : {sunSign}");
+
+            _logger.LogInfo($"DOB : {DOB} \nSun Sign : {sunSign}");
         }
     }
 }

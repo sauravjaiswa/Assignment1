@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Assignment1
@@ -41,7 +42,7 @@ namespace Assignment1
                         response.EnsureSuccessStatusCode();
                         var horoscopeModel = await response.Content.ReadAsAsync<HoroscopeModel>();
                         _horoscopeRepository.Add(zodiac, horoscopeModel);
-
+                        
                         return horoscopeModel;
                     }
                     throw new Exception(response.StatusCode.ToString());

@@ -26,7 +26,7 @@ namespace Assignment1
         {
             try
             {
-                Console.WriteLine("Horoscope called...");
+                //Console.WriteLine("Horoscope called...");
                 horoscope = await _processor.GetHoroscope(sunSign);
             }
             catch(Exception e)
@@ -38,7 +38,7 @@ namespace Assignment1
         public void Display()
         {
             GetSunSign();
-            _logger.LogInfo($"Sun Sign : {sunSign}");
+            _logger.LogInfo($"DOB : {DOB} \nSun Sign : {sunSign}");
             var t = Task.WhenAny(GetHoroscope());
             while (!t.IsCompleted)
             {

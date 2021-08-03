@@ -4,5 +4,6 @@
     {
         void LogError(string message);
         void LogInfo(string message);
+        void LogPrint(string message);
     }
 }

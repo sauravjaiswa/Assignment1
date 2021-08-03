@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment1
 {
@@ -24,9 +19,10 @@ namespace Assignment1
             int choice;
             do
             {
+                _logger.LogPrint("\n\n");
                 do
                 {
-                    Console.WriteLine("Enter date of birth (Format: YYYY-MM-DD):");
+                    _logger.LogPrint("Enter date of birth (Format: YYYY-MM-DD):");
                     idob = Console.ReadLine();
 
 
@@ -41,10 +37,10 @@ namespace Assignment1
                 bool flag = false;
                 do
                 {
-                    Console.WriteLine("Enter choice:");
-                    Console.WriteLine("1 for sun sign");
-                    Console.WriteLine("2 for horoscope");
-                    Console.WriteLine("3 for end application");
+                    _logger.LogPrint("Enter choice:");
+                    _logger.LogPrint("1 for sun sign");
+                    _logger.LogPrint("2 for horoscope");
+                    _logger.LogPrint("3 for end application");
                     ch = Console.ReadLine();
 
                     if (_validation.IsValidChoice(ch))
@@ -76,16 +72,16 @@ namespace Assignment1
                             flag = true;
                             break;
                     }
-                    controller.DisplayResult();
+                    if(!flag)
+                        controller.DisplayResult();
                     
                 } while (flag);
 
-
-                Console.WriteLine("Enter 1 to continue: ");
+                _logger.LogPrint("Enter 1 to continue: ");
                 continueChoice = Console.ReadLine();
 
             } while (continueChoice == "1");
-            
+            _logger.LogInfo("Ending application...");
         }
     }
 }
