@@ -7,14 +7,14 @@ using System.Text;
 
 namespace Assignment1
 {
-    class ApiClientHelper
+    static class ApiClientHelper
     {
         public static HttpClient ApiClient { get; private set; }
         public static string RapidApiKey { get; private set; } = "d38d73d424msh39e37145a05b762p1aa05fjsnae1b946853fa";
 
         static ApiClientHelper()
         {
-            Console.WriteLine("Client connected");
+            //Console.WriteLine("Client connected");
             InitializeClient();
         }
 

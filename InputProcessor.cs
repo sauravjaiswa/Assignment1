@@ -19,7 +19,7 @@ namespace Assignment1
             int choice;
             do
             {
-                _logger.LogPrint("\n\n");
+                _logger.LogPrint("-----------------------------------------------------------------------------------\n");
                 do
                 {
                     _logger.LogPrint("Enter date of birth (Format: YYYY-MM-DD):");

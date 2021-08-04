@@ -47,7 +47,7 @@ namespace Assignment1
             }
             if (status != "OK")
             {
-                _logger.LogError("Bad Request!");
+                _logger.LogError(status);
             }
             else
             {
