@@ -9,6 +9,7 @@ namespace Assignment1
     {
         private readonly HoroscopeRepository _horoscopeRepository;
         private readonly SunSignRepository _sunSignRepository;
+        private readonly string baseUrl = "https://sameer-kumar-aztro-v1.p.rapidapi.com/";
 
         public ApiProcessor()
         {
@@ -27,7 +28,7 @@ namespace Assignment1
                 HttpRequestMessage request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri($"https://sameer-kumar-aztro-v1.p.rapidapi.com/?sign={zodiac}&day=today"),
+                    RequestUri = new Uri($"{baseUrl}?sign={zodiac}&day=today"),
                     Headers =
                     {
                         { "x-rapidapi-key", ApiClientHelper.RapidApiKey },

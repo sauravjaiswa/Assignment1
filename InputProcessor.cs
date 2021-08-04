@@ -67,6 +67,9 @@ namespace Assignment1
                             _logger.LogInfo("Ending application...");
                             Environment.Exit(0);
                             break;
+                        //case 4:
+                        //    controller = new MainController(new AgeCalculator(_logger) { DOB = idob });
+                        //    break;
                         default:
                             _logger.LogError("Invalid choice!");
                             flag = true;
