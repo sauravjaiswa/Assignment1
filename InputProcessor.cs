@@ -23,7 +23,7 @@ namespace Assignment1
                 do
                 {
                     _logger.LogPrint("Enter date of birth (Format: YYYY-MM-DD):");
-                    idob = Console.ReadLine();
+                    idob = Console.ReadLine().Trim();
 
 
                     if (_validation.IsValidDate(idob))
@@ -43,7 +43,7 @@ namespace Assignment1
                         _logger.LogPrint("1 for sun sign");
                         _logger.LogPrint("2 for horoscope");
                         _logger.LogPrint("3 for end application");
-                        ch = Console.ReadLine();
+                        ch = Console.ReadLine().Trim();
 
                         if (_validation.IsValidChoice(ch))
                         {
@@ -84,7 +84,7 @@ namespace Assignment1
                     _logger.LogPrint("Enter 1 to continue with same date");
                     _logger.LogPrint("Enter 2 to continue with new date");
                     _logger.LogPrint("Enter any other key to exit");
-                    continueChoice = Console.ReadLine();
+                    continueChoice = Console.ReadLine().Trim();
 
                 } while (continueChoice == "1");
                 
