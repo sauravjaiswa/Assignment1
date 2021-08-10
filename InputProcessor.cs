@@ -21,10 +21,10 @@ namespace Assignment1
             int choice;
             do
             {
-                _logger.LogPrint("-----------------------------------------------------------------------------------\n");
+                Console.WriteLine("-----------------------------------------------------------------------------------\n");
                 do
                 {
-                    _logger.LogPrint("Enter date of birth (Format: YYYY-MM-DD):");
+                    Console.WriteLine("Enter date of birth (Format: YYYY-MM-DD):");
                     idob = Console.ReadLine().Trim();
 
 
@@ -41,10 +41,10 @@ namespace Assignment1
                     bool flag = false;
                     do
                     {
-                        _logger.LogPrint("Enter choice:");
-                        _logger.LogPrint("1 for sun sign");
-                        _logger.LogPrint("2 for horoscope");
-                        _logger.LogPrint("3 for end application");
+                        Console.WriteLine("Enter choice:");
+                        Console.WriteLine("1 for sun sign");
+                        Console.WriteLine("2 for horoscope");
+                        Console.WriteLine("3 for end application");
                         ch = Console.ReadLine().Trim();
 
                         if (_validationChoice.IsValidChoice(ch))
@@ -83,9 +83,9 @@ namespace Assignment1
                             controller.DisplayResult();
                     } while (flag);
 
-                    _logger.LogPrint("Enter 1 to continue with same date");
-                    _logger.LogPrint("Enter 2 to continue with new date");
-                    _logger.LogPrint("Enter any other key to exit");
+                    Console.WriteLine("Enter 1 to continue with same date");
+                    Console.WriteLine("Enter 2 to continue with new date");
+                    Console.WriteLine("Enter any other key to exit");
                     continueChoice = Console.ReadLine().Trim();
 
                 } while (continueChoice == "1");

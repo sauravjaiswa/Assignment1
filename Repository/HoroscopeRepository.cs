@@ -6,12 +6,15 @@ namespace Assignment1
 {
     static class HoroscopeRepository
     {
-        private static readonly Dictionary<string, HoroscopeModel> horoscopeRepo = new Dictionary<string, HoroscopeModel>();
-
-        public static string LastUpdate { get; set; }
+        private static readonly Dictionary<string, KeyValuePair<string, HoroscopeModel>> horoscopeRepo = new Dictionary<string, KeyValuePair<string, HoroscopeModel>>();
 
         public static bool ContainsKey(string sunSign)
         {
+            if (horoscopeRepo.ContainsKey(sunSign) && (Get(sunSign).Key != DateTime.Now.ToShortDateString()))
+            {
+                RemoveKey(sunSign);
+                return false;
+            }
             return horoscopeRepo.ContainsKey(sunSign);
         }
 
@@ -19,12 +22,11 @@ namespace Assignment1
         {
             if (!ContainsKey(sunSign))
             {
-                horoscopeRepo.Add(sunSign, horoscope);
-                //LastUpdate = "17368";
+                horoscopeRepo.Add(sunSign, new(DateTime.Now.ToShortDateString(), horoscope));
             }
         }
 
-        public static HoroscopeModel Get(string sunSign)
+        public static KeyValuePair<string, HoroscopeModel> Get(string sunSign)
         {
             return horoscopeRepo.GetValueOrDefault(sunSign);
         }

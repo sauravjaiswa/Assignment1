@@ -18,15 +18,9 @@ namespace Assignment1
 
         private async Task<HoroscopeModel> GetHoroscopeAsync(string zodiac)
         {
-            //if (HoroscopeRepository.LastUpdate == "17368")//DateTime.Now.ToShortDateString()
-            //{
-            //    Console.WriteLine("TEST - "+HoroscopeRepository.LastUpdate);
-            //    HoroscopeRepository.Clear();
-            //}
-
             if (HoroscopeRepository.ContainsKey(zodiac))
             {
-                return HoroscopeRepository.Get(zodiac);
+                return HoroscopeRepository.Get(zodiac).Value;
             }
             else
             {
@@ -66,7 +60,7 @@ namespace Assignment1
         public async Task<string> GetHoroscope(string sunSign)
         {
             if (HoroscopeRepository.ContainsKey(sunSign))
-                return HoroscopeRepository.Get(sunSign).Description;
+                return HoroscopeRepository.Get(sunSign).Value.Description;
             else
             {
                 //var api = RestService.For<IApiService>(ApiClientHelper.ApiClient);
@@ -80,7 +74,7 @@ namespace Assignment1
         public async Task<string> GetLuckyNumber(string sunSign)
         {
             if (HoroscopeRepository.ContainsKey(sunSign))
-                return HoroscopeRepository.Get(sunSign).Lucky_number;
+                return HoroscopeRepository.Get(sunSign).Value.Lucky_number;
             else
             {
                 HoroscopeModel horoscope = await GetHoroscopeAsync(sunSign);
