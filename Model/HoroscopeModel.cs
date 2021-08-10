@@ -7,11 +7,6 @@ using System.Threading.Tasks;
 
 namespace Assignment1
 {
-    public class HoroscopeKeyModel
-    {
-        public string Sign { get; set; }
-        public string CurrentDate { get; set; }
-    }
     public class HoroscopeModel
     {
         [JsonProperty("color")]

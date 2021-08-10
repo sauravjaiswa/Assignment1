@@ -25,9 +25,16 @@ namespace Assignment1
             ApiClient.DefaultRequestHeaders.Accept.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            //var client = RestService.For<IApiService>("https://sameer-kumar-aztro-v1.p.rapidapi.com/");
 
-            //var company = client.GetHoroscopeAsync("Pisces");
+            //ApiClient = new HttpClient
+            //{
+            //    BaseAddress = new Uri("https://sameer-kumar-aztro-v1.p.rapidapi.com/"),
+            //    DefaultRequestHeaders =
+            //    {
+            //        { "x-rapidapi-key", ApiClientHelper.RapidApiKey },
+            //        { "x-rapidapi-host", "sameer-kumar-aztro-v1.p.rapidapi.com" },
+            //    }
+            //};
         }
     }
 }

@@ -69,6 +69,9 @@ namespace Assignment1
                 return HoroscopeRepository.Get(sunSign).Description;
             else
             {
+                //var api = RestService.For<IApiService>(ApiClientHelper.ApiClient);
+                //HoroscopeModel horoscope = await api.GetHoroscopeAsync(sunSign);
+
                 HoroscopeModel horoscope = await GetHoroscopeAsync(sunSign);
                 return horoscope.Description;
             }
