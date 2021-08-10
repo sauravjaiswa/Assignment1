@@ -8,7 +8,7 @@ namespace Assignment1
         {
             Console.WriteLine("===================================================================================");
             Console.WriteLine("===========================Welcome to Horoscope Console============================");
-            InputProcessor processor = new (new Validation(), new ConsoleLogger());
+            InputProcessor processor = new (new ValidationChoice(), new ValidationDate(), new ConsoleLogger());
             processor.Process();
             Console.WriteLine("=================================End of Application================================");
             Console.WriteLine("===================================================================================");

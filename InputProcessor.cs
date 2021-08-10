@@ -4,12 +4,14 @@ namespace Assignment1
 {
     public class InputProcessor
     {
-        private readonly IValidation _validation;
+        private readonly IValidationChoice _validationChoice;
+        private readonly IValidationDate _validationDate;
         private readonly ILogger _logger;
 
-        public InputProcessor(IValidation validation, ILogger logger)
+        public InputProcessor(IValidationChoice validationChoice, IValidationDate validationDate, ILogger logger)
         {
-            _validation = validation;
+            _validationChoice = validationChoice;
+            _validationDate = validationDate;
             _logger = logger;
         }
 
@@ -26,7 +28,7 @@ namespace Assignment1
                     idob = Console.ReadLine().Trim();
 
 
-                    if (_validation.IsValidDate(idob))
+                    if (_validationDate.IsValidDate(idob))
                         break;
                     else
                         _logger.LogError("Invalid DOB!");
@@ -45,7 +47,7 @@ namespace Assignment1
                         _logger.LogPrint("3 for end application");
                         ch = Console.ReadLine().Trim();
 
-                        if (_validation.IsValidChoice(ch))
+                        if (_validationChoice.IsValidChoice(ch))
                         {
                             choice = int.Parse(ch);
                             flag = false;
