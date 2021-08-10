@@ -1,27 +1,32 @@
-﻿using System;
+﻿using Refit;
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Assignment1
 {
+    [Headers("Content-Type: application/json")]
+    public interface IApiService
+    {
+        [Post("")]
+        Task<HoroscopeModel> GetHoroscopeAsync([Query] string sign, [Query] string day = "today");
+    }
     public class ApiProcessor
     {
-        private readonly HoroscopeRepository _horoscopeRepository;
-        private readonly SunSignRepository _sunSignRepository;
         private readonly string baseUrl = "https://sameer-kumar-aztro-v1.p.rapidapi.com/";
-
-        public ApiProcessor()
-        {
-            _sunSignRepository = new SunSignRepository();
-            _horoscopeRepository = new HoroscopeRepository();
-        }
 
         private async Task<HoroscopeModel> GetHoroscopeAsync(string zodiac)
         {
-            if (_horoscopeRepository.ContainsKey(zodiac))
+            //if (HoroscopeRepository.LastUpdate == "17368")//DateTime.Now.ToShortDateString()
+            //{
+            //    Console.WriteLine("TEST - "+HoroscopeRepository.LastUpdate);
+            //    HoroscopeRepository.Clear();
+            //}
+
+            if (HoroscopeRepository.ContainsKey(zodiac))
             {
-                return _horoscopeRepository.Get(zodiac);
+                return HoroscopeRepository.Get(zodiac);
             }
             else
             {
@@ -42,7 +47,7 @@ namespace Assignment1
                     {
                         response.EnsureSuccessStatusCode();
                         var horoscopeModel = await response.Content.ReadAsAsync<HoroscopeModel>();
-                        _horoscopeRepository.Add(zodiac, horoscopeModel);
+                        HoroscopeRepository.Add(zodiac, horoscopeModel);
                         
                         return horoscopeModel;
                     }
@@ -55,13 +60,13 @@ namespace Assignment1
 
         public string GetSunSign(string dob)
         {
-            return _sunSignRepository.GetSunSign(dob);
+            return SunSignRepository.GetSunSign(dob);
         }
 
         public async Task<string> GetHoroscope(string sunSign)
         {
-            if (_horoscopeRepository.ContainsKey(sunSign))
-                return _horoscopeRepository.Get(sunSign).Description;
+            if (HoroscopeRepository.ContainsKey(sunSign))
+                return HoroscopeRepository.Get(sunSign).Description;
             else
             {
                 HoroscopeModel horoscope = await GetHoroscopeAsync(sunSign);
@@ -71,8 +76,8 @@ namespace Assignment1
 
         public async Task<string> GetLuckyNumber(string sunSign)
         {
-            if (_horoscopeRepository.ContainsKey(sunSign))
-                return _horoscopeRepository.Get(sunSign).Lucky_number;
+            if (HoroscopeRepository.ContainsKey(sunSign))
+                return HoroscopeRepository.Get(sunSign).Lucky_number;
             else
             {
                 HoroscopeModel horoscope = await GetHoroscopeAsync(sunSign);

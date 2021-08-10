@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assignment1
 {
-    class SunSignRepository
+    static class SunSignRepository
     {
         private static readonly Dictionary<string, string> SunSignDictionary = new Dictionary<string, string>();
 
@@ -84,7 +84,7 @@ namespace Assignment1
             }
         }
 
-        public string GetSunSign(string date)
+        public static string GetSunSign(string date)
         {
             DateTime dateTemp = DateTime.Parse(date);
             date = dateTemp.ToShortDateString();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Refit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -23,6 +24,10 @@ namespace Assignment1
             ApiClient = new HttpClient();
             ApiClient.DefaultRequestHeaders.Accept.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            //var client = RestService.For<IApiService>("https://sameer-kumar-aztro-v1.p.rapidapi.com/");
+
+            //var company = client.GetHoroscopeAsync("Pisces");
         }
     }
 }
