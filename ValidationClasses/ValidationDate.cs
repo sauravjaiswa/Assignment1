@@ -7,9 +7,11 @@ namespace Assignment1
     {
         public bool IsValidDate(string dob)
         {
-            bool result = DateTime.TryParseExact(dob, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
+            DateTime temp;
+            bool result = DateTime.TryParseExact(dob, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out temp);
 
-            return result;
+
+            return result && (temp.Year <= DateTime.Now.Year);
         }
     }
 }

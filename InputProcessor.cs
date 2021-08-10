@@ -7,12 +7,14 @@ namespace Assignment1
         private readonly IValidationChoice _validationChoice;
         private readonly IValidationDate _validationDate;
         private readonly ILogger _logger;
+        private readonly ILogger _fileLogger;
 
-        public InputProcessor(IValidationChoice validationChoice, IValidationDate validationDate, ILogger logger)
+        public InputProcessor(IValidationChoice validationChoice, IValidationDate validationDate, ILogger logger, ILogger fileLogger)
         {
             _validationChoice = validationChoice;
             _validationDate = validationDate;
             _logger = logger;
+            _fileLogger = fileLogger;
         }
 
         public void Process()
@@ -31,7 +33,10 @@ namespace Assignment1
                     if (_validationDate.IsValidDate(idob))
                         break;
                     else
+                    {
                         _logger.LogError("Invalid DOB!");
+                        _fileLogger.LogError("Invalid DOB!");
+                    }
 
                 } while (true);
 
@@ -55,6 +60,7 @@ namespace Assignment1
                         else
                         {
                             _logger.LogError("Invalid choice!");
+                            _fileLogger.LogError("Invalid choice!");
                             flag = true;
                             continue;
                         }
@@ -65,7 +71,7 @@ namespace Assignment1
                                 controller = new MainController(new SunSign(_logger) { DOB = idob });
                                 break;
                             case 2:
-                                controller = new MainController(new Horoscope(_logger) { DOB = idob });
+                                controller = new MainController(new Horoscope(_logger, _fileLogger) { DOB = idob });
                                 break;
                             case 3:
                                 _logger.LogInfo("Ending application...");
@@ -76,6 +82,7 @@ namespace Assignment1
                             //    break;
                             default:
                                 _logger.LogError("Invalid choice!");
+                                _fileLogger.LogError("Invalid choice!");
                                 flag = true;
                                 break;
                         }

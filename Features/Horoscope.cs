@@ -8,13 +8,14 @@ namespace Assignment1
         public string DOB { get; set; }
         private string sunSign, horoscope;
         private string status = "OK";
-        private readonly ILogger _logger;
+        private readonly ILogger _logger, _fileLogger;
         private readonly ApiProcessor _processor;
 
-        public Horoscope(ILogger logger)
+        public Horoscope(ILogger logger, ILogger fileLogger)
         {
             _processor = new ApiProcessor();
             _logger = logger;
+            _fileLogger = fileLogger;
         }
 
         public void GetSunSign()
@@ -48,6 +49,7 @@ namespace Assignment1
             if (status != "OK")
             {
                 _logger.LogError(status);
+                _fileLogger.LogError(status);
             }
             else
             {
