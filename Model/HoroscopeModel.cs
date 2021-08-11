@@ -9,21 +9,28 @@ namespace Assignment1
 {
     public class HoroscopeModel
     {
-        [JsonProperty("color")]
+        [JsonProperty(PropertyName = "color")]
         public string Color { get; set; }
-        [JsonProperty("compatibility")]
+
+        [JsonProperty(PropertyName = "compatibility")]
         public string Compatibility { get; set; }
-        [JsonProperty("current_date")]
+
+        [JsonProperty(PropertyName = "current_date")]
         public string Current_date { get; set; }
-        [JsonProperty("date_range")]
+        
+        [JsonProperty(PropertyName = "date_range")]
         public string Date_range { get; set; }
-        [JsonProperty("description")]
+        
+        [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
-        [JsonProperty("lucky_number")]
+        
+        [JsonProperty(PropertyName = "lucky_number")]
         public string Lucky_number { get; set; }
-        [JsonProperty("lucky_time")]
+        
+        [JsonProperty(PropertyName = "lucky_time")]
         public string Lucky_time { get; set; }
-        [JsonProperty("mood")]
+        
+        [JsonProperty(PropertyName = "mood")]
         public string Mood { get; set; }
     }
 }

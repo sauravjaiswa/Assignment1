@@ -29,11 +29,11 @@ namespace Assignment1
             ApiClient = new HttpClient
             {
                 BaseAddress = new Uri("https://sameer-kumar-aztro-v1.p.rapidapi.com/"),
-                DefaultRequestHeaders =
-                {
-                    { "x-rapidapi-key", RapidApiKey },
-                    { "x-rapidapi-host", "sameer-kumar-aztro-v1.p.rapidapi.com" },
-                }
+                //DefaultRequestHeaders =
+                //{
+                //    { "x-rapidapi-key", RapidApiKey },
+                //    { "x-rapidapi-host", "sameer-kumar-aztro-v1.p.rapidapi.com" },
+                //}
             };
         }
     }

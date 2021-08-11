@@ -6,12 +6,6 @@ using System.Threading.Tasks;
 
 namespace Assignment1
 {
-    [Headers("Content-Type: application/json")]
-    public interface IApiService
-    {
-        [Post("")]
-        Task<HoroscopeModel> GetHoroscopeAsync([Query] string sign, [Query] string day = "today");
-    }
     public class ApiProcessor
     {
         private readonly string baseUrl = "https://sameer-kumar-aztro-v1.p.rapidapi.com/";
@@ -58,7 +52,6 @@ namespace Assignment1
                 HoroscopeRepository.Add(zodiac, horoscopeModel);
 
                 return horoscopeModel;
-
             }
 
         }
