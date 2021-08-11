@@ -21,20 +21,20 @@ namespace Assignment1
 
         public static void InitializeClient()
         {
-            ApiClient = new HttpClient();
-            ApiClient.DefaultRequestHeaders.Accept.Clear();
-            ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //ApiClient = new HttpClient();
+            //ApiClient.DefaultRequestHeaders.Accept.Clear();
+            //ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
 
-            //ApiClient = new HttpClient
-            //{
-            //    BaseAddress = new Uri("https://sameer-kumar-aztro-v1.p.rapidapi.com/"),
-            //    DefaultRequestHeaders =
-            //    {
-            //        { "x-rapidapi-key", ApiClientHelper.RapidApiKey },
-            //        { "x-rapidapi-host", "sameer-kumar-aztro-v1.p.rapidapi.com" },
-            //    }
-            //};
+            ApiClient = new HttpClient
+            {
+                BaseAddress = new Uri("https://sameer-kumar-aztro-v1.p.rapidapi.com/"),
+                DefaultRequestHeaders =
+                {
+                    { "x-rapidapi-key", RapidApiKey },
+                    { "x-rapidapi-host", "sameer-kumar-aztro-v1.p.rapidapi.com" },
+                }
+            };
         }
     }
 }

@@ -15,6 +15,12 @@ namespace Assignment1
     public class ApiProcessor
     {
         private readonly string baseUrl = "https://sameer-kumar-aztro-v1.p.rapidapi.com/";
+        private readonly IApiService _apiService;
+
+        public ApiProcessor()
+        {
+            _apiService = RestService.For<IApiService>(ApiClientHelper.ApiClient);
+        }
 
         private async Task<HoroscopeModel> GetHoroscopeAsync(string zodiac)
         {
@@ -24,29 +30,34 @@ namespace Assignment1
             }
             else
             {
-                HttpRequestMessage request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Post,
-                    RequestUri = new Uri($"{baseUrl}?sign={zodiac}&day=today"),
-                    Headers =
-                    {
-                        { "x-rapidapi-key", ApiClientHelper.RapidApiKey },
-                        { "x-rapidapi-host", "sameer-kumar-aztro-v1.p.rapidapi.com" },
-                    },
-                };
+                //HttpRequestMessage request = new HttpRequestMessage
+                //{
+                //    Method = HttpMethod.Post,
+                //    RequestUri = new Uri($"{baseUrl}?sign={zodiac}&day=today"),
+                //    Headers =
+                //    {
+                //        { "x-rapidapi-key", ApiClientHelper.RapidApiKey },
+                //        { "x-rapidapi-host", "sameer-kumar-aztro-v1.p.rapidapi.com" },
+                //    },
+                //};
 
-                using (HttpResponseMessage response = await ApiClientHelper.ApiClient.SendAsync(request))
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        response.EnsureSuccessStatusCode();
-                        var horoscopeModel = await response.Content.ReadAsAsync<HoroscopeModel>();
-                        HoroscopeRepository.Add(zodiac, horoscopeModel);
-                        
-                        return horoscopeModel;
-                    }
-                    throw new Exception(response.StatusCode.ToString());
-                }
+                //using (HttpResponseMessage response = await ApiClientHelper.ApiClient.SendAsync(request))
+                //{
+                //    if (response.IsSuccessStatusCode)
+                //    {
+                //        response.EnsureSuccessStatusCode();
+                //        var horoscopeModel = await response.Content.ReadAsAsync<HoroscopeModel>();
+                //        HoroscopeRepository.Add(zodiac, horoscopeModel);
+
+                //        return horoscopeModel;
+                //    }
+                //    throw new Exception(response.StatusCode.ToString());
+                //}
+
+                var horoscopeModel = await _apiService.GetHoroscopeAsync(zodiac);
+                HoroscopeRepository.Add(zodiac, horoscopeModel);
+
+                return horoscopeModel;
 
             }
 

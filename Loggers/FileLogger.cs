@@ -31,7 +31,7 @@ namespace Assignment1
 
             using (var streamWriter = new StreamWriter(_path, true))
             {
-                await streamWriter.WriteLineAsync(_logs.Dequeue());
+                await Task.Run(() => streamWriter.WriteLineAsync(_logs.Dequeue())); 
             }
         }
     }
